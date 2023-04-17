@@ -16,6 +16,10 @@ export const AllReviews = () => {
         })
     }, []);
 
+    if (isLoading) {
+        return <h1>Page Loading...</h1>
+    }
+
     return (
         <main>
             <h2>Reviews List:</h2>
