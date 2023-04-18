@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as api from "./api";
-import { ReviewBox } from "./ReviewBox";
+import { ReviewCard } from "./ReviewCard";
 
 export const AllReviews = () => {
     const [reviews, setReviews] = useState([]);
@@ -17,17 +17,17 @@ export const AllReviews = () => {
     }, []);
 
     if (isLoading) {
-        return <h1>Loading...</h1>
+        return <h1 className="isLoading">Loading...</h1>
     }
 
     return (
         <main>
             <h2>Reviews List:</h2>
-            <ol className="all-reviews">
+            <ol className="All-Reviews">
                 {reviews.map(review => {
-                    return <ReviewBox key={review.review_id} {...review} />
+                    return <ReviewCard key={review.review_id} {...review} />
                 })}
             </ol>
         </main>
-    )
-}
+    );
+};

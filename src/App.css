@@ -2,11 +2,38 @@
   box-sizing: border-box;
 }
 
-.App {
+/* .App {
+  text-align: center;
+} */
+
+.Header {
+  text-align: center;
+}
+
+.Login {
   text-align: center;
 }
 
 #review-box-img {
   float: right;
+}
 
+#Single-Review {
+  text-align: left;
+}
+
+#Single-Review-img {
+  float: right;
+}
+
+.NavBar {
+  text-align: center;
+}
+
+.isLoading {
+  text-align: center;
+}
+
+.Comments-Card {
+  text-align: left;
 }

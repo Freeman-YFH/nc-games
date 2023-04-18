@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export const ReviewBox = ({ title, review_img_url, created_at, votes, category, owner, review_id }) => {
+export const ReviewCard = ({ title, review_img_url, created_at, votes, category, owner, review_id }) => {
     return (
         <li className="review-box">
             <Link to={`/allReviews/${review_id}`}>
@@ -13,5 +13,5 @@ export const ReviewBox = ({ title, review_img_url, created_at, votes, category, 
                 <hr></hr>
             </Link>
         </li>
-    )
-}
+    );
+};
