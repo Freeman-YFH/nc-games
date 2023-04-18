@@ -31,7 +31,7 @@ export const SingleReview = () => {
             <h4>Category: {review.category}</h4>
             <h4>Comment count: {review.comment_count}</h4>
             <h5>Created at: {review.created_at.slice(0, 10)}</h5>
-            <VotesReview votes={review.votes} review_id={review_id} setReview={setReview} />
+            <VotesReview votes={review.votes} review_id={review_id} />
             <hr style={{ height: 5, backgroundColor: "gray" }} />
             <section>
                 <AllComments />
