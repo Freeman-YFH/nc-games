@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import * as api from "./api";
 import { NavBar } from "./NavBar";
 import { AllComments } from "./AllComments";
+import { VotesReview } from "./VotesReview";
 
 export const SingleReview = () => {
     const { review_id } = useParams();
@@ -29,8 +30,8 @@ export const SingleReview = () => {
             <h3>Game review: "{review.review_body}"</h3>
             <h4>Category: {review.category}</h4>
             <h4>Comment count: {review.comment_count}</h4>
-            <h4>Votes: {review.votes}</h4>
             <h5>Created at: {review.created_at.slice(0, 10)}</h5>
+            <VotesReview votes={review.votes} review_id={review_id} setReview={setReview} />
             <hr style={{ height: 5, backgroundColor: "gray" }} />
             <section>
                 <AllComments />
