@@ -17,7 +17,7 @@ export const AllReviews = () => {
     }, []);
 
     if (isLoading) {
-        return <h1>Page Loading...</h1>
+        return <h1>Loading...</h1>
     }
 
     return (
