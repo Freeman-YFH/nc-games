@@ -5,11 +5,16 @@ const gamesApi = axios.create({
 });
 
 export const fetchReviews = async () => {
-    const response = await gamesApi.get('/reviews')
-    return response.data.reviews;
+    const res = await gamesApi.get('/reviews')
+    return res.data.reviews;
 };
 
 export const fetchReviewById = async (review_id) => {
     const res = await gamesApi.get(`/reviews/${review_id}`)
     return res.data.review;
+};
+
+export const fetchCommentsByReview_id = async (review_id) => {
+    const res = await gamesApi.get(`/reviews/${review_id}/comments`)
+    return res.data.comments;
 };

@@ -1,5 +1,7 @@
 export const Header = () => {
     return (
-        <h1>NC Games</h1>
+
+        <h1 className="Header">NC Games</h1>
+
     );
 }
