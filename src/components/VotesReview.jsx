@@ -29,8 +29,9 @@ export const VotesReview = ({ votes, review_id }) => {
     return (
         <div>
             <h3>Votes: {votes + addVote + minusVote}</h3>
-            <button onClick={handlePlusClick} disabled={addVote === 1}>V +1</button>
-            <button onClick={handleMinusClick} disabled={minusVote === -1}>V -1</button>
+            <button onClick={handlePlusClick} disabled={addVote === 1}>V + 1</button> {" "}
+            <button onClick={handleMinusClick} disabled={minusVote === -1}>V - 1</button>
+            <h5>(please refresh if you want to vote again)</h5>
             {plusErr ? <p>{plusErr}</p> : null}
             {minusErr ? <p>{minusErr}</p> : null}
         </div>
