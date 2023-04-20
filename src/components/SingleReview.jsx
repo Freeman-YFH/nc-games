@@ -23,7 +23,7 @@ export const SingleReview = ({ username }) => {
 
     return (
         <main className="Single-Review">
-            <NavBar />
+            <NavBar username={username} />
             <h2>Review on: {review.title}</h2>
             <img src={review.review_img_url} alt={review.title} width={350} height={350} id="Single-Review-img"></img>
             <h2>Game Designer: {review.designer}</h2>

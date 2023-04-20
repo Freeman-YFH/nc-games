@@ -7,7 +7,6 @@ export const AllReviews = () => {
     const [isLoading, setIsLoading] = useState(true);
 
 
-
     useEffect(() => {
         setIsLoading(true);
         api.fetchReviews().then((reviews) => {

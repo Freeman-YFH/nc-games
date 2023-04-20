@@ -16,18 +16,32 @@ export const AllComments = ({ username }) => {
     const [newComment, setNewComment] = useState("");
     const [err, setErr] = useState("");
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+
         const addComment = {
             username: username.username,
             body: newComment
         };
-        api.postCommentToReview(review_id, addComment).then((addedComment) => {
+        let date = new Date().toJSON();
+        const newCommentObj = {
+            body: newComment,
+            review_id: review_id,
+            author: username.username,
+            votes: 0,
+            created_at: date
+        }
+        setComments((currentComments) => [newCommentObj, ...currentComments])
+
+        api.postCommentToReview(review_id, addComment).catch(() => {
             setComments((currentComments) => {
-                return [addedComment, ...currentComments];
+                const commentArrCopy = [...currentComments]
+                commentArrCopy.shift()
+                return commentArrCopy
             });
-        }).catch(() => {
-            setComments("");
+            setNewComment("");
             setErr("something went wrong, please try again later...");
         })
         setNewComment("");
@@ -42,7 +56,7 @@ export const AllComments = ({ username }) => {
                         id="post-comment"
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
-                        rows={4} cols={50}></textarea>{" "}
+                        rows={4} cols={50} required></textarea>{" "}
                     <button type="submit">Post!</button>
                 </form>
             </div >
@@ -53,7 +67,7 @@ export const AllComments = ({ username }) => {
                     ? <h3>No comment yet</h3>
                     :
                     comments.map(comment => {
-                        return <CommentCard key={comment.comment_id} {...comment} />
+                        return <CommentCard key={comment.created_at} {...comment} />
                     })
                 }
             </ul>
