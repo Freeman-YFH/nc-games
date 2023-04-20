@@ -5,10 +5,11 @@ import { NavBar } from "./NavBar";
 import { AllComments } from "./AllComments";
 import { VotesReview } from "./VotesReview";
 
-export const SingleReview = () => {
+export const SingleReview = ({ username }) => {
     const { review_id } = useParams();
     const [review, setReview] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [addComment, setAddComment] = useState("");
 
     useEffect(() => {
         setIsLoading(true);
@@ -22,7 +23,7 @@ export const SingleReview = () => {
 
     return (
         <main className="Single-Review">
-            <NavBar />
+            <NavBar username={username} />
             <h2>Review on: {review.title}</h2>
             <img src={review.review_img_url} alt={review.title} width={350} height={350} id="Single-Review-img"></img>
             <h2>Game Designer: {review.designer}</h2>
@@ -34,7 +35,7 @@ export const SingleReview = () => {
             <VotesReview votes={review.votes} review_id={review_id} />
             <hr style={{ height: 5, backgroundColor: "gray" }} />
             <section>
-                <AllComments />
+                <AllComments username={username} setAddComment={setAddComment} addComment={addComment} />
             </section>
         </main >
     );
