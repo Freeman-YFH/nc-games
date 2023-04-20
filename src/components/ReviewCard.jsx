@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export const ReviewCard = ({ title, review_img_url, created_at, votes, category, owner, review_id }) => {
     return (
         <li className="review-box">
-            <Link to={`/allReviews/${review_id}`}>
+            <Link to={`/reviews/${review_id}`}>
                 <img src={review_img_url} alt={title} width={200} height={200} id="review-box-img"></img>
                 <h3>Title: {title}</h3>
                 <h4>Owner: {owner}</h4>

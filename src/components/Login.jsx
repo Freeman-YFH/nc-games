@@ -3,7 +3,7 @@ import { AllReviews } from "./AllReviews";
 
 export const Login = ({ username, setUsername }) => {
 
-    const [name, setName] = useState("jessjelly");
+    const [name, setName] = useState("grumpy19");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,9 +24,8 @@ export const Login = ({ username, setUsername }) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 >
-                    <option value="jessjelly">jessjelly</option>
-                    <option value="happyamy2016">happyamy2016</option>
-                    <option value="cooljmessy">cooljmessy</option>
+                    <option value="grumpy19">grumpy19</option>
+                    <option value="tickle122">tickle122</option>
                 </select>
                 {" "}
                 <button type="submit">Submit</button>

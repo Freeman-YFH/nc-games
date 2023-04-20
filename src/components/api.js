@@ -23,3 +23,8 @@ export const patchReviewVote = async (review_id, voteNumber) => {
     const res = await gamesApi.patch(`/reviews/${review_id}`, { inc_votes: voteNumber });
     return res.data.review;
 }
+
+export const postCommentToReview = async (review_id, addComment) => {
+    const res = await gamesApi.post(`/reviews/${review_id}/comments`, addComment);
+    return res.data.comments;
+}

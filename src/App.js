@@ -16,8 +16,8 @@ function App() {
       <Header username={username} />
       <Routes>
         <Route path='/' element={<Login username={username} setUsername={setUsername} />} />
-        <Route path='/allReviews' element={<AllReviews />} />
-        <Route path='/allReviews/:review_id' element={<SingleReview />} />
+        <Route path='/reviews' element={<AllReviews />} />
+        <Route path='/reviews/:review_id' element={<SingleReview username={username} />} />
       </Routes>
     </div>
   );

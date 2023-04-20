@@ -1,8 +1,7 @@
 export const UsernameBar = ({ username }) => {
     return (
-        <p>
+        <div>
             {username ? <p>login as: {username.username}</p> : <p></p>}
-
-        </p>
+        </div>
     )
 };
