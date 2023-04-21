@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { AllReviews } from "./AllReviews";
+import { useNavigate } from "react-router-dom";
 
 export const Login = ({ username, setUsername }) => {
+
+    const navigate = useNavigate();
 
     const [name, setName] = useState("grumpy19");
 
@@ -11,9 +13,9 @@ export const Login = ({ username, setUsername }) => {
             username: name
         }
         setUsername(username)
+        if (username) { navigate("/reviews") };
     };
 
-    if (username) { return <AllReviews /> };
 
     return (
         <div className="Login">

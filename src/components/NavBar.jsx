@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const NavBar = (username) => {
 
-    // const handleClick = () => {
-    //     username = undefined
-    // };
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/");
+    };
 
     return (
         <div className="NavBar">
-            {/* <Link to="/" onClick={handleClick}>Login page</Link> */}
+            <Link to="/" onClick={handleClick}>Login page</Link> {" "}
             <Link to="/reviews">All Reviews</Link>
         </div>
     );

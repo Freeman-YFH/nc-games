@@ -18,6 +18,8 @@ function App() {
         <Route path='/' element={<Login username={username} setUsername={setUsername} />} />
         <Route path='/reviews' element={<AllReviews />} />
         <Route path='/reviews/:review_id' element={<SingleReview username={username} />} />
+        <Route path='/reviews/categories' element={<AllReviews />} />
+        <Route path='/reviews/categories/:categories' element={<AllReviews />} />
       </Routes>
     </div>
   );
