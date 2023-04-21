@@ -1,16 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export const NavBar = (username) => {
-
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate("/");
-    };
+export const NavBar = () => {
 
     return (
         <div className="NavBar">
-            <Link to="/" onClick={handleClick}>Login page</Link> {" "}
+            <Link to="/" >Login page</Link> {" "}
             <Link to="/reviews">All Reviews</Link>
         </div>
     );

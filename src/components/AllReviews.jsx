@@ -6,7 +6,7 @@ import { CategoriesBar } from "./CategoriesBar";
 export const AllReviews = () => {
     const [reviews, setReviews] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [displayCategories, setDisplayCategories] = useState("null");
+    const [displayCategories, setDisplayCategories] = useState({});
 
     useEffect(() => {
         setIsLoading(true);
