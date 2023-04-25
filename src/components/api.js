@@ -4,8 +4,8 @@ const gamesApi = axios.create({
     baseURL: 'https://nc-game.onrender.com/api'
 });
 
-export const fetchReviews = async () => {
-    const res = await gamesApi.get('/reviews');
+export const fetchReviews = async (sortByQuery) => {
+    const res = await gamesApi.get("/reviews", { params: { sort_by: sortByQuery } });
     return res.data.reviews;
 };
 
@@ -34,8 +34,9 @@ export const fetchCategory = async () => {
     return res.data.category;
 };
 
-export const fetchReviewByCategories = async (categories) => {
-    const res = await gamesApi.get("/reviews", { params: { category: categories } })
+export const fetchReviewByCategories = async (category, sortByQuery) => {
+    console.log(sortByQuery)
+    const res = await gamesApi.get("/reviews", { params: { category: category, sort_by: sortByQuery } })
     return res.data.reviews;
 };
 

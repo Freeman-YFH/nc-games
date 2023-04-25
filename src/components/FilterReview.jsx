@@ -1,30 +1,44 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import * as api from "./api";
 import { ReviewCard } from "./ReviewCard";
 import { CategoriesBar } from "./CategoriesBar";
+import { SortByBar } from "./SortByBar";
 
-export const FilterReview = () => {
+export const FilterReview = ({ sortByValue, setSortByValue }) => {
     const { categories } = useParams();
     const [isLoading, setIsLoading] = useState(true);
     const [reviews, setReviews] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(categories);
     const navigator = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const sortByQuery = searchParams.get("sort_by");
+
 
     useEffect(() => {
         setIsLoading(true);
         if (categories === "all") { categories = "" }
-        api.fetchReviewByCategories(categories).then((reviews) => {
+        api.fetchReviewByCategories(categories, sortByQuery).then((reviews) => {
             setReviews(reviews);
             setIsLoading(false);
         })
-    }, [categories]);
+    }, [categories, sortByQuery]);
+
 
     useEffect(() => {
+        if (selectedCategory === "all") {
+            navigator("/reviews/categories")
+        }
         if (selectedCategory !== categories) {
             navigator(`/reviews/categories/${selectedCategory}`)
         }
-    }, [selectedCategory])
+    }, [selectedCategory]);
+
+    useEffect(() => {
+        if (sortByValue) {
+            navigator(`/reviews/categories/${selectedCategory}${sortByValue}`)
+        }
+    }, [sortByValue]);
 
     if (isLoading) {
         return <h1 className="isLoading">Loading...</h1>;
@@ -34,6 +48,7 @@ export const FilterReview = () => {
         <div>
             <h2>Category on: {`${selectedCategory}`}</h2>
             <CategoriesBar setDisplayCategories={setSelectedCategory} />
+            <SortByBar setSortByValue={setSortByValue} />
             <ol className="All-Reviews">
                 {reviews.map(review => {
                     return <ReviewCard key={review.review_id} {...review} />

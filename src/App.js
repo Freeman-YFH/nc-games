@@ -10,16 +10,18 @@ import { FilterReview } from './components/FilterReview';
 function App() {
 
   const [username, setUsername] = useState();
+  const [sortByValue, setSortByValue] = useState("");
+
 
   return (
     <div className="App">
       <Header username={username} />
       <Routes>
         <Route path='/' element={<Login username={username} setUsername={setUsername} />} />
-        <Route path='/reviews' element={<AllReviews />} />
+        <Route path='/reviews' element={<AllReviews sortByValue={sortByValue} setSortByValue={setSortByValue} />} />
         <Route path='/reviews/:review_id' element={<SingleReview username={username} />} />
-        <Route path='/reviews/categories' element={<AllReviews />} />
-        <Route path='/reviews/categories/:categories' element={<FilterReview />} />
+        <Route path='/reviews/categories' element={<AllReviews sortByValue={sortByValue} setSortByValue={setSortByValue} />} />
+        <Route path='/reviews/categories/:categories' element={<FilterReview sortByValue={sortByValue} setSortByValue={setSortByValue} />} />
       </Routes>
     </div>
   );
