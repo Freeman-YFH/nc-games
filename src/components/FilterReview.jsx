@@ -28,8 +28,7 @@ export const FilterReview = ({ sortByValue, setSortByValue }) => {
     useEffect(() => {
         if (selectedCategory === "all") {
             navigator("/reviews/categories")
-        }
-        if (selectedCategory !== categories) {
+        } else if (selectedCategory !== categories) {
             navigator(`/reviews/categories/${selectedCategory}`)
         }
     }, [selectedCategory]);

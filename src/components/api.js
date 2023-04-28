@@ -35,7 +35,6 @@ export const fetchCategory = async () => {
 };
 
 export const fetchReviewByCategories = async (category, sortByQuery) => {
-    console.log(sortByQuery)
     const res = await gamesApi.get("/reviews", { params: { category: category, sort_by: sortByQuery } })
     return res.data.reviews;
 };

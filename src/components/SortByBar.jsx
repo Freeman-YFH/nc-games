@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-export const SortByBar = ({ sortByValue, setSortByValue }) => {
+export const SortByBar = ({ setSortByValue }) => {
 
     const [sortBy, setSortBy] = useState("?sort_by=created_at");
 
