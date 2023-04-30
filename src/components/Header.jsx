@@ -1,4 +1,3 @@
-import { NavBar } from "./NavBar";
 import { UsernameBar } from "./UsernameBar";
 
 export const Header = ({ username }) => {

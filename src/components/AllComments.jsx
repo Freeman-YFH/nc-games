@@ -6,6 +6,9 @@ import { CommentCard } from "./CommentCard";
 export const AllComments = ({ username }) => {
     const { review_id } = useParams();
     const [comments, setComments] = useState([]);
+    const [id, setId] = useState(null);
+
+    console.log(id, "<==id")
 
     useEffect(() => {
         api.fetchCommentsByReview_id(review_id).then((comments) => {
@@ -15,6 +18,7 @@ export const AllComments = ({ username }) => {
 
     const [newComment, setNewComment] = useState("");
     const [err, setErr] = useState("");
+
 
 
     const handleSubmit = (e) => {
@@ -47,6 +51,20 @@ export const AllComments = ({ username }) => {
         setNewComment("");
     };
 
+
+    useEffect(() => {
+        setComments((currentComments) => {
+            const commentArrCopy = [...currentComments]
+            commentArrCopy.filter((comment) => comment.comment_id !== id)
+            return commentArrCopy
+        })
+        if (id) {
+            api.deleteCommentsToReview(id)
+        }
+    }, [id])
+
+
+
     return (
         <section className="Comments-Card">
             <div>
@@ -67,7 +85,7 @@ export const AllComments = ({ username }) => {
                     ? <h3>No comment yet</h3>
                     :
                     comments.map(comment => {
-                        return <CommentCard key={comment.created_at} {...comment} />
+                        return <CommentCard key={comment.created_at} {...comment} setId={setId} username={username} />
                     })
                 }
             </ul>
