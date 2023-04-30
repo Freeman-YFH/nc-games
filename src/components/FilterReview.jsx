@@ -13,16 +13,23 @@ export const FilterReview = ({ sortByValue, setSortByValue }) => {
     const navigator = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const sortByQuery = searchParams.get("sort_by");
+    const orderQuery = searchParams.get("order");
+
+    const setSortOrder = (direction) => {
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set("order", direction);
+        setSearchParams(newParams);
+    }
 
 
     useEffect(() => {
         setIsLoading(true);
         if (categories === "all") { categories = "" }
-        api.fetchReviewByCategories(categories, sortByQuery).then((reviews) => {
+        api.fetchReviewByCategories(categories, sortByQuery, orderQuery).then((reviews) => {
             setReviews(reviews);
             setIsLoading(false);
         })
-    }, [categories, sortByQuery]);
+    }, [categories, sortByQuery, orderQuery]);
 
 
     useEffect(() => {
@@ -48,6 +55,8 @@ export const FilterReview = ({ sortByValue, setSortByValue }) => {
             <h2>Category on: {`${selectedCategory}`}</h2>
             <CategoriesBar setDisplayCategories={setSelectedCategory} />
             <SortByBar setSortByValue={setSortByValue} />
+            <button onClick={() => setSortOrder("asc")}>Ascending</button>
+            <button onClick={() => setSortOrder("desc")}>Descending</button>
             <ol className="All-Reviews">
                 {reviews.map(review => {
                     return <ReviewCard key={review.review_id} {...review} />
