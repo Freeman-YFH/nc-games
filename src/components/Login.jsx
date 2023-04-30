@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as api from "./api";
 
 export const Login = ({ setUsername }) => {
 
     const navigate = useNavigate();
-
-    const [name, setName] = useState("grumpy19");
+    const [name, setName] = useState("");
+    const [nameApi, setNameApi] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,6 +17,11 @@ export const Login = ({ setUsername }) => {
         if (username) { navigate("/reviews") };
     };
 
+    useEffect(() => {
+        api.fetchUsers().then((users) => {
+            setNameApi(users)
+        })
+    }, [])
 
     return (
         <div className="Login">
@@ -26,8 +32,9 @@ export const Login = ({ setUsername }) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 >
-                    <option value="grumpy19">grumpy19</option>
-                    <option value="tickle122">tickle122</option>
+                    {nameApi.map((name) => {
+                        return <option key={name.name} value={name.username} >{name.username}</option>
+                    })}
                 </select>
                 {" "}
                 <button type="submit">Submit</button>

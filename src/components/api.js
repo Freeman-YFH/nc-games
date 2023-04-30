@@ -41,6 +41,9 @@ export const fetchReviewByCategories = async (category, sortByQuery, orderQuery)
 
 export const deleteCommentsToReview = async (comment_id) => {
     await gamesApi.delete(`comments/${comment_id}`);
+};
 
-}
-
+export const fetchUsers = async () => {
+    const res = await gamesApi.get('/users');
+    return res.data.users;
+};
