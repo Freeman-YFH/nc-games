@@ -6,15 +6,17 @@ import { CommentCard } from "./CommentCard";
 export const AllComments = ({ username }) => {
     const { review_id } = useParams();
     const [comments, setComments] = useState([]);
+    const [id, setId] = useState(null);
 
     useEffect(() => {
         api.fetchCommentsByReview_id(review_id).then((comments) => {
             setComments(comments);
         })
-    }, [review_id]);
+    }, [review_id, comments]);
 
     const [newComment, setNewComment] = useState("");
     const [err, setErr] = useState("");
+
 
 
     const handleSubmit = (e) => {
@@ -34,6 +36,7 @@ export const AllComments = ({ username }) => {
             created_at: date
         }
         setComments((currentComments) => [newCommentObj, ...currentComments])
+        alert("Comment posted")
 
         api.postCommentToReview(review_id, addComment).catch(() => {
             setComments((currentComments) => {
@@ -46,6 +49,21 @@ export const AllComments = ({ username }) => {
         })
         setNewComment("");
     };
+
+
+    useEffect(() => {
+        setComments((currentComments) => {
+            const commentArrCopy = [...currentComments]
+            commentArrCopy.filter((comment) => comment.comment_id !== id)
+            return commentArrCopy
+        })
+        if (id) {
+            alert("Comment deleted")
+            api.deleteCommentsToReview(id)
+        }
+    }, [id])
+
+
 
     return (
         <section className="Comments-Card">
@@ -67,7 +85,7 @@ export const AllComments = ({ username }) => {
                     ? <h3>No comment yet</h3>
                     :
                     comments.map(comment => {
-                        return <CommentCard key={comment.created_at} {...comment} />
+                        return <CommentCard key={comment.created_at} {...comment} setId={setId} username={username} />
                     })
                 }
             </ul>
