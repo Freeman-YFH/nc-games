@@ -1,14 +1,10 @@
 
 export const CommentCard = ({ author, body, comment_id, created_at, votes, setId, username }) => {
 
-    const handleOnClick = (comment_id, author, username) => {
-        // if (username !== author) {
-        //     <Popup>Only User can delete his/her own comment</Popup>
-        // }
+    const handleOnClick = (comment_id) => {
         setId(comment_id)
     }
-    console.log(username.username, "<==username")
-    console.log(author, "<==author")
+
     return (
         <li>
             <h4>Author: {author}</h4>

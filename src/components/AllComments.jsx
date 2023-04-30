@@ -8,13 +8,11 @@ export const AllComments = ({ username }) => {
     const [comments, setComments] = useState([]);
     const [id, setId] = useState(null);
 
-    console.log(id, "<==id")
-
     useEffect(() => {
         api.fetchCommentsByReview_id(review_id).then((comments) => {
             setComments(comments);
         })
-    }, [review_id]);
+    }, [review_id, comments]);
 
     const [newComment, setNewComment] = useState("");
     const [err, setErr] = useState("");
@@ -38,6 +36,7 @@ export const AllComments = ({ username }) => {
             created_at: date
         }
         setComments((currentComments) => [newCommentObj, ...currentComments])
+        alert("Comment posted")
 
         api.postCommentToReview(review_id, addComment).catch(() => {
             setComments((currentComments) => {
@@ -59,6 +58,7 @@ export const AllComments = ({ username }) => {
             return commentArrCopy
         })
         if (id) {
+            alert("Comment deleted")
             api.deleteCommentsToReview(id)
         }
     }, [id])
