@@ -10,7 +10,7 @@ export const ReviewCard = ({ title, review_img_url, created_at, votes, category,
                 <h4>Category: {category}</h4>
                 <h4>Comment count: {comment_count}</h4>
                 <h4>Votes: {votes}</h4>
-                <h5>Created at: {created_at.slice(0, 10)}</h5>
+                <h5>Created at: {created_at.slice(0, 10) + " " + created_at.slice(12, 19)}</h5>
                 <hr></hr>
             </Link>
         </li>
